@@ -1,0 +1,33 @@
+icon-input {
+  height: auto;
+  width: auto;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  input {
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+    font-size: 15px;
+    font-weight: 5400;
+
+    border-radius: 20px;
+    border: 1px solid var(--color2);
+    background: white;
+
+    &::placeholder {
+      color: var(--color2);
+    }
+  }
+  vaadin-icon {
+    position: absolute;
+    transform: scale(0.75);
+    padding-right: 1.1rem;
+    left: 1rem;
+
+    color: var(--color2);
+    border-right: 1px #7a9a92 solid;
+  }
+}
