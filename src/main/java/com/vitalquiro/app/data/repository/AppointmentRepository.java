@@ -1,11 +1,13 @@
-package com.vitalquiro.app.data;
+package com.vitalquiro.app.data.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-public interface SamplePersonRepository
+import com.vitalquiro.app.data.model.Appointment;
+
+public interface AppointmentRepository
         extends
-            JpaRepository<SamplePerson, Long>,
-            JpaSpecificationExecutor<SamplePerson> {
+        JpaRepository<Appointment, Long>,
+        JpaSpecificationExecutor<Appointment> {
 
 }
