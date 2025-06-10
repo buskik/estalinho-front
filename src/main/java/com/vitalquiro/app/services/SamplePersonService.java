@@ -1,7 +1,7 @@
 package com.vitalquiro.app.services;
 
 import com.vitalquiro.app.data.SamplePerson;
-import com.vitalquiro.app.data.SamplePersonRepository;
+import com.vitalquiro.app.data.AppointmentRepository;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class SamplePersonService {
 
-    private final SamplePersonRepository repository;
+    private final AppointmentRepository repository;
 
-    public SamplePersonService(SamplePersonRepository repository) {
+    public SamplePersonService(AppointmentRepository repository) {
         this.repository = repository;
     }
 
