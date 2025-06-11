@@ -1,16 +1,13 @@
 package com.vitalquiro.app.services;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
+import java.time.Duration;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.vitalquiro.app.data.dto.UserDto;
 import com.vitalquiro.app.data.model.User;
 import com.vitalquiro.app.data.repository.UserRepository;
-
-import java.time.Duration;
-import java.util.List;
 
 @Service
 public class UserService {

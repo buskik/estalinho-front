@@ -3,8 +3,6 @@ package com.vitalquiro.app.data.repository;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.vitalquiro.app.data.dto.UserDto;
