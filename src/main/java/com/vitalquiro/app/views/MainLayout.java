@@ -74,6 +74,17 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         List<MenuEntry> menuEntries = MenuConfiguration.getMenuEntries();
+menuEntries.stream()
+    .filter(entry -> !entry.title().equalsIgnoreCase("Cadastro"))
+    .forEach(entry -> {
+        if (entry.icon() != null) {
+            nav.addItem(new SideNavItem(entry.title(), entry.path(), new SvgIcon(entry.icon())));
+        } else {
+            nav.addItem(new SideNavItem(entry.title(), entry.path()));
+        }
+    });
+/*
+        List<MenuEntry> menuEntries = MenuConfiguration.getMenuEntries();
         menuEntries.forEach(entry -> {
             if (entry.icon() != null) {
                 nav.addItem(new SideNavItem(entry.title(), entry.path(), new SvgIcon(entry.icon())));
@@ -82,7 +93,8 @@ public class MainLayout extends AppLayout {
             }
         });
 
-        return nav;
+*/        return nav;
+
     }
 
     private Footer createFooter() {

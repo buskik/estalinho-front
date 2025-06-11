@@ -8,6 +8,7 @@ import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridVariant;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.html.Span;
@@ -31,13 +32,26 @@ import com.vaadin.flow.theme.lumo.LumoUtility.TextColor;
 import com.vitalquiro.app.views.dashboard.ServiceHealth.Status;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
-@PageTitle("Dashboard")
+@PageTitle("Quiropraxia VitalQuiro")
 @Route("dashboard")
 @Menu(order = 0, icon = LineAwesomeIconUrl.CHART_AREA_SOLID)
 @AnonymousAllowed
-public class DashboardView extends Main {
+    public class DashboardView extends Div {
 
     public DashboardView() {
+        setClassName("dashboard-view");
+        setSizeFull();
+
+        Div background = new Div();
+        background.setClassName("background-image");
+        background.setSizeFull();
+
+        add(background);
+    }
+}
+
+
+   /* public DashboardView() {
         addClassName("dashboard-view");
 
         Board board = new Board();
@@ -225,5 +239,4 @@ public class DashboardView extends Main {
         }
         return theme;
     }
-
-}
+*/
