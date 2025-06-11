@@ -95,10 +95,9 @@ public class CriarusuarioView extends Composite<VerticalLayout> {
 
     private void setSelectSampleData(Select select) {
         List<SampleItem> sampleItems = new ArrayList<>();
-        sampleItems.add(new SampleItem("first", "First", null));
-        sampleItems.add(new SampleItem("second", "Second", null));
-        sampleItems.add(new SampleItem("third", "Third", Boolean.TRUE));
-        sampleItems.add(new SampleItem("fourth", "Fourth", null));
+        sampleItems.add(new SampleItem("usuario", "Usuário", null));
+        sampleItems.add(new SampleItem("medico", "Médico", null));
+        sampleItems.add(new SampleItem("admin", "Administrador", null));
         select.setItems(sampleItems);
         select.setItemLabelGenerator(item -> ((SampleItem) item).label());
         select.setItemEnabledProvider(item -> !Boolean.TRUE.equals(((SampleItem) item).disabled()));

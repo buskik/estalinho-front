@@ -56,6 +56,8 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
 
     private final Button cancel = new Button("Cancel");
     private final Button save = new Button("Save");
+    private final Button delete = new Button("Delete");
+
 
     private final BeanValidationBinder<SamplePerson> binder;
 
@@ -137,6 +139,18 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
                 Notification.show("Failed to update the data. Check again that all values are valid");
             }
         });
+        delete.addClickListener(e -> {
+    if (this.samplePerson != null && this.samplePerson.getId() != null) {
+        samplePersonService.delete(this.samplePerson.getId());
+        Notification.show("Usuário deletado com sucesso!", 3000, Position.BOTTOM_START);
+        clearForm();
+        refreshGrid();
+        UI.getCurrent().navigate(EditarusuárioView.class);
+    } else {
+        Notification.show("Nenhum usuário selecionado para deletar.", 3000, Position.BOTTOM_START);
+    }
+});
+
     }
 
     @Override
@@ -167,14 +181,14 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
         editorLayoutDiv.add(editorDiv);
 
         FormLayout formLayout = new FormLayout();
-        firstName = new TextField("First Name");
-        lastName = new TextField("Last Name");
-        email = new TextField("Email");
-        phone = new TextField("Phone");
-        dateOfBirth = new DatePicker("Date Of Birth");
-        occupation = new TextField("Occupation");
-        role = new TextField("Role");
-        important = new Checkbox("Important");
+        firstName = new TextField("Primeiro Nome");
+        lastName = new TextField("Sobrenome");
+        email = new TextField("E-mail");
+        phone = new TextField("Telefone");
+        dateOfBirth = new DatePicker("Data de Nascimento");
+        occupation = new TextField("Profissão");
+        role = new TextField("Tipo");
+        important = new Checkbox("Importante");
         formLayout.add(firstName, lastName, email, phone, dateOfBirth, occupation, role, important);
 
         editorDiv.add(formLayout);
@@ -188,7 +202,7 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
         buttonLayout.setClassName("button-layout");
         cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(save, cancel);
+        buttonLayout.add(save, cancel, delete);
         editorLayoutDiv.add(buttonLayout);
     }
 

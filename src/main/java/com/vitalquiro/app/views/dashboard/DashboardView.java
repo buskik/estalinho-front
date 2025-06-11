@@ -46,7 +46,7 @@ public class DashboardView extends Main {
         board.addRow(createViewEvents());
         board.addRow(createServiceHealth(), createResponseTimes());
         add(board);
-    }
+    } 
 
     private Component createHighlight(String title, String value, Double percentage) {
         VaadinIcon icon = VaadinIcon.ARROW_UP;

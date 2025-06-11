@@ -84,7 +84,7 @@ public class ListarconsultasView extends Div {
             span.setText(client.getClient());
             hl.add(img, span);
             return hl;
-        })).setComparator(client -> client.getClient()).setHeader("Client");
+        })).setComparator(client -> client.getClient()).setHeader("Usuário");
     }
 
     // Modificado para coluna padrão sem edição inline
@@ -93,7 +93,7 @@ public class ListarconsultasView extends Div {
                 client -> client.getAmount(),
                 NumberFormat.getCurrencyInstance(Locale.US)))
                 .setComparator(client -> client.getAmount())
-                .setHeader("Amount");
+                .setHeader("Valor da Consulta");
     }
 
     // Modificado para coluna padrão sem edição inline
@@ -110,14 +110,14 @@ public class ListarconsultasView extends Div {
         dateColumn = grid
                 .addColumn(new LocalDateRenderer<>(client -> LocalDate.parse(client.getDate()),
                         () -> DateTimeFormatter.ofPattern("M/d/yyyy")))
-                .setComparator(client -> client.getDate()).setHeader("Date").setWidth("180px").setFlexGrow(0);
+                .setComparator(client -> client.getDate()).setHeader("Data").setWidth("180px").setFlexGrow(0);
     }
 
     private void addFiltersToGrid() {
         HeaderRow filterRow = grid.appendHeaderRow();
 
         TextField clientFilter = new TextField();
-        clientFilter.setPlaceholder("Filter");
+        clientFilter.setPlaceholder("Filtro");
         clientFilter.setClearButtonVisible(true);
         clientFilter.setWidth("100%");
         clientFilter.setValueChangeMode(ValueChangeMode.EAGER);
@@ -126,7 +126,7 @@ public class ListarconsultasView extends Div {
         filterRow.getCell(clientColumn).setComponent(clientFilter);
 
         TextField amountFilter = new TextField();
-        amountFilter.setPlaceholder("Filter");
+        amountFilter.setPlaceholder("Filtro");
         amountFilter.setClearButtonVisible(true);
         amountFilter.setWidth("100%");
         amountFilter.setValueChangeMode(ValueChangeMode.EAGER);
@@ -135,8 +135,8 @@ public class ListarconsultasView extends Div {
         filterRow.getCell(amountColumn).setComponent(amountFilter);
 
         ComboBox<String> statusFilter = new ComboBox<>();
-        statusFilter.setItems(Arrays.asList("Pending", "Success", "Error"));
-        statusFilter.setPlaceholder("Filter");
+        statusFilter.setItems(Arrays.asList("Pendente", "Realizada", "Cancelada"));
+        statusFilter.setPlaceholder("Filtro");
         statusFilter.setClearButtonVisible(true);
         statusFilter.setWidth("100%");
         statusFilter.addValueChangeListener(
@@ -144,7 +144,7 @@ public class ListarconsultasView extends Div {
         filterRow.getCell(statusColumn).setComponent(statusFilter);
 
         DatePicker dateFilter = new DatePicker();
-        dateFilter.setPlaceholder("Filter");
+        dateFilter.setPlaceholder("Filtro");
         dateFilter.setClearButtonVisible(true);
         dateFilter.setWidth("100%");
         dateFilter.addValueChangeListener(
@@ -171,24 +171,24 @@ public class ListarconsultasView extends Div {
 
     private List<Client> getClients() {
         return Arrays.asList(
-                createClient(4957, "https://randomuser.me/api/portraits/women/42.jpg", "Amarachi Nkechi", 47427.0,
-                        "Success", "2019-05-09"),
-                createClient(675, "https://randomuser.me/api/portraits/women/24.jpg", "Bonelwa Ngqawana", 70503.0,
-                        "Success", "2019-05-09"),
-                createClient(6816, "https://randomuser.me/api/portraits/men/42.jpg", "Debashis Bhuiyan", 58931.0,
-                        "Success", "2019-05-07"),
-                createClient(5144, "https://randomuser.me/api/portraits/women/76.jpg", "Jacqueline Asong", 25053.0,
-                        "Pending", "2019-04-25"),
-                createClient(9800, "https://randomuser.me/api/portraits/men/24.jpg", "Kobus van de Vegte", 7319.0,
-                        "Pending", "2019-04-22"),
-                createClient(3599, "https://randomuser.me/api/portraits/women/94.jpg", "Mattie Blooman", 18441.0,
-                        "Error", "2019-04-17"),
-                createClient(3989, "https://randomuser.me/api/portraits/men/76.jpg", "Oea Romana", 33376.0, "Pending",
-                        "2019-04-17"),
-                createClient(1077, "https://randomuser.me/api/portraits/men/94.jpg", "Stephanus Huggins", 75774.0,
-                        "Success", "2019-02-26"),
-                createClient(8942, "https://randomuser.me/api/portraits/men/16.jpg", "Torsten Paulsson", 82531.0,
-                        "Pending", "2019-02-21"));
+                createClient(4957, "https://randomuser.me/api/portraits/women/42.jpg", "Amarachi Nechi", 407.0,
+                        "Realizada", "2025-06-05"),
+                createClient(675, "https://randomuser.me/api/portraits/women/24.jpg", "Bonela Nayana", 503.0,
+                        "Realizada", "2025-05-03"),
+                createClient(6816, "https://randomuser.me/api/portraits/men/42.jpg", "Debashis Bhuiyan", 531.0,
+                        "Realizada", "2025-05-06"),
+                createClient(5144, "https://randomuser.me/api/portraits/women/76.jpg", "Jacqueline Asong", 253.0,
+                        "Pendente", "2025-07-07"),
+                createClient(9800, "https://randomuser.me/api/portraits/men/24.jpg", "Robson de Vegte", 319.0,
+                        "Pendente", "2025-06-23"),
+                createClient(3599, "https://randomuser.me/api/portraits/women/94.jpg", "Maria Blooman", 441.0,
+                        "Cancelada", "2025-05-17"),
+                createClient(3989, "https://randomuser.me/api/portraits/men/76.jpg", "Otávio Romana", 336.0, "Pendente",
+                        "2025-06-17"),
+                createClient(1077, "https://randomuser.me/api/portraits/men/94.jpg", "Stephanus Huggins", 374.0,
+                        "Realizada", "2025-05-26"),
+                createClient(8942, "https://randomuser.me/api/portraits/men/16.jpg", "Torsten Paulsson", 231.0,
+                        "Pendente", "2025-06-25"));
     }
 
     private Client createClient(int id, String img, String client, double amount, String status, String date) {

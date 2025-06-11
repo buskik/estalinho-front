@@ -32,6 +32,7 @@ public class SamplePersonService {
     public Page<SamplePerson> list(Pageable pageable) {
         return repository.findAll(pageable);
     }
+    
 
     public Page<SamplePerson> list(Pageable pageable, Specification<SamplePerson> filter) {
         return repository.findAll(filter, pageable);

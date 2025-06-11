@@ -21,8 +21,6 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
 
     public MainView(AuthenticatedUser authenticatedUser) {
         this.authenticatedUser = authenticatedUser;
-        // Monta o layout básico; o beforeEnter faz o redirecionamento
-        add(new H1("Bem-vinda ao Dashboard!"));
     }
 
     @Override
