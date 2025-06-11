@@ -1,44 +1,41 @@
 package com.vitalquiro.app.services;
 
-import com.vitalquiro.app.data.User;
-import com.vitalquiro.app.data.UserRepository;
-import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.vitalquiro.app.data.dto.UserDto;
+import com.vitalquiro.app.data.model.User;
+import com.vitalquiro.app.data.repository.UserRepository;
+
+import java.time.Duration;
+import java.util.List;
+
 @Service
 public class UserService {
 
     private final UserRepository repository;
+    private static final Duration TIMEOUT = Duration.ofSeconds(10);
 
     public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
-    public Optional<User> get(Long id) {
-        return repository.findById(id);
+    public List<User> fetchAll() {
+        return repository.fetchAll().block(TIMEOUT);
     }
 
-    public User save(User entity) {
-        return repository.save(entity);
+    public void delete(int id) {
+        repository.delete(id);
     }
 
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public void create(UserDto data) {
+        repository.create(data).block(TIMEOUT);
     }
 
-    public Page<User> list(Pageable pageable) {
-        return repository.findAll(pageable);
-    }
-
-    public Page<User> list(Pageable pageable, Specification<User> filter) {
-        return repository.findAll(filter, pageable);
-    }
-
-    public int count() {
-        return (int) repository.count();
+    public void update(int id, User data) {
+        repository.update(id, data).block(TIMEOUT);
     }
 
 }
