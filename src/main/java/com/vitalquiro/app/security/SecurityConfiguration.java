@@ -14,6 +14,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfiguration extends VaadinWebSecurity {
 
+    private final UserDetailsServiceImpl userDetailsService;
+
+    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -21,16 +27,22 @@ public class SecurityConfiguration extends VaadinWebSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // Define o serviço de autenticação
+        http.userDetailsService(userDetailsService);
 
-        http.authorizeHttpRequests(
-                authorize -> authorize.requestMatchers(new AntPathRequestMatcher("/images/*.png")).permitAll());
-
-        // Icons from the line-awesome addon
+        // Libera os recursos estáticos sem precisar de login
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(new AntPathRequestMatcher("/line-awesome/**/*.svg")).permitAll());
+                .requestMatchers(new AntPathRequestMatcher("/images/*.png")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/line-awesome/**/*.svg")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/@fontsource/**/*.css")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/VAADIN/**")).permitAll() // muito importante pro Vaadin funcionar
+                .requestMatchers(new AntPathRequestMatcher("/favicon.ico")).permitAll()
+        );
 
+        // Continua com a configuração do Vaadin
         super.configure(http);
-        setLoginView(http, LoginView.class);
-    }
 
+        // Define a view de login e a URL padrão de redirecionamento após login bem-sucedido
+        setLoginView(http, LoginView.class, "/");
+    }
 }

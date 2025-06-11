@@ -7,7 +7,6 @@ import com.vaadin.flow.component.grid.Grid.SelectionMode;
 import com.vaadin.flow.component.grid.GridVariant;
 import com.vaadin.flow.component.grid.HeaderRow;
 import com.vaadin.flow.component.grid.dataview.GridListDataView;
-import com.vaadin.flow.component.gridpro.GridPro;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
@@ -37,7 +36,7 @@ import org.vaadin.lineawesome.LineAwesomeIconUrl;
 @AnonymousAllowed
 public class ListarconsultasView extends Div {
 
-    private GridPro<Client> grid;
+    private Grid<Client> grid;
     private GridListDataView<Client> gridListDataView;
 
     private Grid.Column<Client> clientColumn;
@@ -59,7 +58,7 @@ public class ListarconsultasView extends Div {
     }
 
     private void createGridComponent() {
-        grid = new GridPro<>();
+        grid = new Grid<>();
         grid.setSelectionMode(SelectionMode.MULTI);
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER, GridVariant.LUMO_COLUMN_BORDERS);
         grid.setHeight("100%");
@@ -88,22 +87,23 @@ public class ListarconsultasView extends Div {
         })).setComparator(client -> client.getClient()).setHeader("Client");
     }
 
+    // Modificado para coluna padrão sem edição inline
     private void createAmountColumn() {
-        amountColumn = grid
-                .addEditColumn(Client::getAmount,
-                        new NumberRenderer<>(client -> client.getAmount(), NumberFormat.getCurrencyInstance(Locale.US)))
-                .text((item, newValue) -> item.setAmount(Double.parseDouble(newValue)))
-                .setComparator(client -> client.getAmount()).setHeader("Amount");
+        amountColumn = grid.addColumn(new NumberRenderer<>(
+                client -> client.getAmount(),
+                NumberFormat.getCurrencyInstance(Locale.US)))
+                .setComparator(client -> client.getAmount())
+                .setHeader("Amount");
     }
 
+    // Modificado para coluna padrão sem edição inline
     private void createStatusColumn() {
-        statusColumn = grid.addEditColumn(Client::getClient, new ComponentRenderer<>(client -> {
+        statusColumn = grid.addColumn(new ComponentRenderer<>(client -> {
             Span span = new Span();
             span.setText(client.getStatus());
             span.getElement().setAttribute("theme", "badge " + client.getStatus().toLowerCase());
             return span;
-        })).select((item, newValue) -> item.setStatus(newValue), Arrays.asList("Pending", "Success", "Error"))
-                .setComparator(client -> client.getStatus()).setHeader("Status");
+        })).setComparator(client -> client.getStatus()).setHeader("Status");
     }
 
     private void createDateColumn() {
@@ -202,4 +202,4 @@ public class ListarconsultasView extends Div {
 
         return c;
     }
-};
+}

@@ -32,7 +32,7 @@ import com.vitalquiro.app.views.dashboard.ServiceHealth.Status;
 import org.vaadin.lineawesome.LineAwesomeIconUrl;
 
 @PageTitle("Dashboard")
-@Route("")
+@Route("dashboard")
 @Menu(order = 0, icon = LineAwesomeIconUrl.CHART_AREA_SOLID)
 @AnonymousAllowed
 public class DashboardView extends Main {

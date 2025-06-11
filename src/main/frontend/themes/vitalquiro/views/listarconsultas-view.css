@@ -2,22 +2,27 @@
   display: block;
   height: 100%;
 }
-.listarconsultas-view vaadin-grid-pro {
+.listarconsultas-view vaadin-grid {
   height: 100%;
 }
+  
 .listarconsultas-view vaadin-grid-filter,
 .listarconsultas-view vaadin-grid-filter > * {
   width: 100%;
 }
-.listarconsultas-view vaadin-grid-pro vaadin-horizontal-layout {
+
+.listarconsultas-view vaadin-grid vaadin-horizontal-layout {
   align-items: center;
 }
-.listarconsultas-view vaadin-grid-pro img {
+  
+.listarconsultas-view vaadin-grid img {
   border-radius: 50%;
   flex-shrink: 0;
   height: var(--lumo-size-m);
   width: var(--lumo-size-m);
 }
+  
+
 .listarconsultas-view .name {
   overflow: hidden;
   text-overflow: ellipsis;

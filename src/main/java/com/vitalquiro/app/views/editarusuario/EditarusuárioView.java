@@ -1,4 +1,4 @@
-package com.vitalquiro.app.views.editarusuário;
+package com.vitalquiro.app.views.editarusuario;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -59,9 +59,9 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
 
     private final BeanValidationBinder<SamplePerson> binder;
 
-    private SamplePerson samplePerson;
+    private transient SamplePerson samplePerson;
 
-    private final SamplePersonService samplePersonService;
+    private final transient SamplePersonService samplePersonService;
 
     public EditarusuárioView(SamplePersonService samplePersonService) {
         this.samplePersonService = samplePersonService;
@@ -85,8 +85,8 @@ public class EditarusuárioView extends Div implements BeforeEnterObserver {
         grid.addColumn("role").setAutoWidth(true);
         LitRenderer<SamplePerson> importantRenderer = LitRenderer.<SamplePerson>of(
                 "<vaadin-icon icon='vaadin:${item.icon}' style='width: var(--lumo-icon-size-s); height: var(--lumo-icon-size-s); color: ${item.color};'></vaadin-icon>")
-                .withProperty("icon", important -> important.isImportant() ? "check" : "minus").withProperty("color",
-                        important -> important.isImportant()
+                .withProperty("icon", person -> person.isImportant() ? "check" : "minus").withProperty("color",
+                        person -> person.isImportant()
                                 ? "var(--lumo-primary-text-color)"
                                 : "var(--lumo-disabled-text-color)");
 
