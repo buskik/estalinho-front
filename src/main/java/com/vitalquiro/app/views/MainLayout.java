@@ -1,5 +1,9 @@
 package com.vitalquiro.app.views;
 
+import java.io.ByteArrayInputStream;
+import java.util.List;
+import java.util.Optional;
+
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -23,11 +27,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.server.menu.MenuConfiguration;
 import com.vaadin.flow.server.menu.MenuEntry;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import com.vitalquiro.app.data.User;
 import com.vitalquiro.app.security.AuthenticatedUser;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * The main view is a top-level placeholder for other views.

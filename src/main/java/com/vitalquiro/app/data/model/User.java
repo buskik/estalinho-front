@@ -1,5 +1,7 @@
 package com.vitalquiro.app.data.model;
 
+import java.time.LocalDate;
+
 import com.vitalquiro.app.data.model.enums.UserStatesEnum;
 import com.vitalquiro.app.data.model.enums.UserTypesEnum;
 
@@ -20,7 +22,7 @@ public class User {
     private UserTypesEnum tipo_usuario;
     @Enumerated(EnumType.STRING)
     private UserStatesEnum estado_usuario;
-    private String data_incluso;
-    private String data_Alteracao;
+    private LocalDate data_incluso;
+    private LocalDate data_alteracao;
 
 }

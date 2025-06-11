@@ -2,84 +2,22 @@ package com.vitalquiro.app.data.model;
 
 import java.time.LocalDate;
 
+import com.vitalquiro.app.data.model.enums.UserStatesEnum;
+
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Email;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.Data;
 
 @Entity
+@Data
 public class Appointment {
-
-    private String firstName;
-    private String lastName;
-    @Email
-    private String email;
-    private String phone;
-    private LocalDate dateOfBirth;
-    private String occupation;
-    private String role;
-    private boolean important;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public boolean isImportant() {
-        return important;
-    }
-
-    public void setImportant(boolean important) {
-        this.important = important;
-    }
-
+    private int id;
+    private int fkMedico;
+    private int fkPaciente;
+    @Enumerated(EnumType.STRING)
+    private UserStatesEnum estado_consulta;
+    private LocalDate data_inclusao;
+    private LocalDate data_alteracao;
+    private LocalDate data_consulta;
 }
